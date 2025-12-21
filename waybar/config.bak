@@ -1,0 +1,132 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "margin-bottom": 0,
+
+  "modules-left": [
+    "custom/media",
+    "custom/media-prev",
+    "custom/player",
+    "custom/media-next",
+    "hyprland/window"   
+  ],
+
+  "modules-center": [ 
+    "hyprland/workspaces"
+  ],
+
+  "modules-right": [
+    "cpu",
+    "memory",
+    "network",
+    "pulseaudio",
+    "tray",
+    "battery",
+    "clock"
+  ],
+
+  "hyprland/workspaces": {
+    "format": "{icon} ",
+    "format-icons": {
+      "active": "",
+      "default": ""
+    },
+    "on-click": "hyprctl dispatch workspace {id}",
+    "persistent-workspaces": {
+      "*": 5
+    }
+  },
+
+  "hyprland/window": {
+    "format": " {}",
+    "max-length": 60,
+    "class": "center",
+    "separate-outputs": true,
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "   $1",
+      "(.*) - Twitch — Mozilla Firefox": "   $1",
+      "(.*) - Youtube — Mozilla Firefox": "   $1",
+      "(.*) - Discord": "   $1",
+      "(.*) - Mozilla Thunderbird": "   $1",
+      "Spotube": " 󰓇  Spotube"
+    }
+  },
+
+  "clock": {
+    "format": " {:%H:%M}",
+    "format-alt": " {:%a %b %d}",
+    "tooltip-format": "{calendar}", 
+    "class": "capsule"
+  },
+
+  "cpu": {
+    "format": "󰍛 {usage}% ",
+    "class": "capsule"
+  },
+
+  "memory": {
+    "format": " {used}GB ",
+    "class": "capsule"
+  },
+
+  "network": {
+    "format-wifi": "  {signalStrength}% ",
+    "format-ethernet": " ETH ",
+    "format-disconnected": " ",
+    "class": "capsule"
+  },
+
+  "pulseaudio": {
+    "format": " {volume}% ",
+    "format-muted": " MUTED ",
+    "scroll-step": 2,
+    "class": "capsule"
+  },
+
+  "battery": {
+    "format": " {capacity}% {icon} ",
+    "format-charging": " {capacity}%  ",
+    "format-plugged": " {capacity}%  ",
+    "format-alt": " {time} {icon} ",
+    "states": {
+      "good": 80,
+      "warning": 30,
+      "critical": 15
+    },
+    "format-icons": [" ", " ", " ", " ", " "]
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10,
+    "class": "capsule"
+  },
+  "custom/media": {
+    "format": "{}",
+    "exec": "playerctl metadata --format '{{playerName}} {{artist}}' -F | sed --unbuffered -e 's/([0-9]*) //g' -e 's/^firefox .*YouTube.*/ /g' -e 's/^firefox .*Twitch.*/ /g' -e 's/^firefox/ /g' -e 's/^spotube/󰓇 /g'",
+    "on-click": "playerctl play-pause",
+    "tooltip": true,
+    "max-length": 30
+  },
+  "custom/media-prev": {
+    "format": " 󰼨 ", 
+    "on-click": "playerctl previous",
+    "tooltip": false
+  },
+  "custom/player": {
+    "exec": "playerctl status 2>/dev/null | grep -q 'Playing' && echo '󰏤 ' || echo ' '",
+    "interval": 1,
+    "on-click": "playerctl play-pause || spotube",
+    "tooltip": false,
+    "max-length": 40
+  },
+  "custom/media-next": {
+    "format": "󰼧 ",
+    "on-click": "playerctl next",
+    "tooltip": false
+  }
+}

@@ -1,0 +1,22 @@
+[global]
+transparency = 8
+separator_color = frame
+frame_width = 2
+frame_color = "#fec89a" 
+
+[urgency_low]
+    background = "#f8edebff"
+    foreground = "#434a42ff"
+    timeout = 5
+
+[urgency_normal]
+    background = "#d8e2dcff"
+    foreground = "#434a42ff"
+    frame_color = "#fec89a"
+    timeout = 10
+
+[urgency_critical]
+    background = "#bf616a"
+    foreground = "#f8edeb"
+    frame_color = "#bf616a"
+    timeout = 0

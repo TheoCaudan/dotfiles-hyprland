@@ -1,0 +1,25 @@
+.main-container {
+  background-color: rgba(22, 22, 22, 0.95); 
+  border: none; 
+  padding: 20px;
+}
+
+.album-art {
+  border-radius: 10px;
+  background-size: cover;
+  margin-bottom: 15px;
+}
+
+.title { font-weight: bold; font-size: 14px; color: #d7d9ce; }
+.artist { font-size: 12px; color: #7f849c; margin-bottom: 10px; }
+
+.volume-slider {
+  margin-left: 10px;
+  highlight { background-color: #119da4; }
+}
+
+.controls button {
+  font-size: 24px;
+  color: #d7d9ce;
+  &:hover { color: #119da4; }
+}

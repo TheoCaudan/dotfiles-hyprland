@@ -1,0 +1,121 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "margin-bottom": 0,
+  "modules-left": [
+    "hyprland/workspaces",
+    "custom/cava",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "cpu",
+    "memory",
+    "network",
+    "pulseaudio",
+    "battery",
+    "tray"
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "6": "󰐨",
+      "active": "",
+      "default": ""
+    },
+    "on-click": "hyprctl dispatch workspace {id}",
+    "persistent-workspaces": {
+      "eDP-1": [1, 2, 3, 4, 5],
+      "HDMI-A-1": [6]
+    }
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "max-length": 60,
+    "separate-outputs": true,
+    "rewrite": {
+      "(.*) — Mozilla Firefox": "  $1",
+      "(.*) - Twitch — Mozilla Firefox": "  $1",
+      "(.*) - Youtube — Mozilla Firefox": "  $1",
+      "(.*) - Discord": "  $1",
+      "Spotube": "󰓇  Spotube"
+    }
+  },
+  "custom/cava": {
+    "format": "{}",
+    "exec": "~/.config/waybar/scripts/cava.sh",
+    "on-click": "eww open --toggle media-menu"
+  },
+  "clock": {
+    "format": "{:%H:%M}",
+    "format-alt": "{:%a %b %d}",
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "mode"          : "month",
+      "mode-mon-col"  : 3,
+      "on-scroll"     : 1,
+      "format": {
+        "months":     "<span color='#ffefef'><b>{}</b></span>",
+        "days":       "<span color='#ffefef'><b>{}</b></span>",
+        "weeks":      "<span color='#ffefef'><b>W{}</b></span>",
+        "weekdays":   "<span color='#ffefef'><b>{}</b></span>",
+        "today":      "<span color='#ffefef'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+        "on-click-right": "mode",
+        "on-scroll-up": "shift_up",
+        "on-scroll-down": "shift_down"
+    } 
+  },
+  "cpu": {
+    "format": "󰍛 {usage}%"
+  },
+  "memory": {
+    "format": "  {used}GB"
+  },
+  "network": {
+    "format-wifi": "  {signalStrength}%",
+    "format-ethernet": "  ETH",
+    "format-disconnected": "  "
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": " MUTED",
+    "format-icons": {
+      "default": [
+        " ",
+        " "
+      ]
+    },
+    "scroll-step": 2
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 10,
+    "show-passive-items": true,
+    "reverse-direction": true
+  }
+}

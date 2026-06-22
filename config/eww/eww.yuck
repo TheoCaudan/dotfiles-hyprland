@@ -1,0 +1,51 @@
+(defwidget media-popup []
+  (eventbox :onhoverlost "eww close media-menu"
+    (box :class "main-container" :orientation "v" :space-evenly false
+      ;; La Pochette (Thumbnail)
+      (box :class "album-art" 
+         :style "background-image: url('${art-url}');"
+         :width 200 :height 200)
+
+      ;; Titre et Artiste
+      (label :class "title" :text title :limit-width 25)
+      (label :class "artist" :text artist :limit-width 20)
+
+      ;; Slider de Volume
+      (box :class "volume-box" :orientation "h" :space-evenly false
+        (label :text "󰕾 ")
+        (scale :class "volume-slider"
+               :value {current-media-volume}
+               :orientation "h"
+               :width 200
+               :max 101
+               :min 0
+               :flipped false
+               :onchange "~/.config/eww/scripts/set_vol.sh {}"
+        )
+      )
+
+      ;; Contrôles Media
+      (box :class "controls" :orientation "h" :halign "center" :spacing 20
+        (button :onclick "playerctl -p spotube,firefox previous" "󰼨")
+        (button :class "play-pause" 
+                :onclick {music-status == "Stopped" ? "spotube &" : "playerctl play-pause"}
+                {music-status == "Playing" ? "󰏤" : "󰐊"})
+        (button :onclick "playerctl -p spotube,firefox next" "󰼧")
+      )
+    )
+  )
+)
+
+;; Window definition
+(defwindow media-menu
+  :monitor 0
+  :geometry (geometry :x "7.7%" :y "0" :anchor "top left" :width "280px")
+  :stacking "fg"
+  (media-popup))
+
+;; Variables (à alimenter via scripts)
+(defpoll art-url :interval "2s" "scripts/get_art.sh")
+(defpoll title :interval "2s" "playerctl metadata title")
+(defpoll artist :interval "2s" "playerctl metadata artist")
+(defpoll current-media-volume :interval "1s" "playerctl volume 2>/dev/null | awk '{print $1*100}' || echo 0")
+(defpoll music-status :interval "1s" "playerctl status 2>/dev/null || echo 'Stopped'")

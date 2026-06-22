@@ -1,8 +1,14 @@
 ankama-launcher
+bloodhound
 departure
+dirb
 eww
 ffuf
+gobuster
+metasploit
+neo4j
+nikto
+responder
 spotube-bin
 subfinder-bin
-yay-bin
-yay-bin-debug
+wpscan

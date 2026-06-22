@@ -1,5 +1,0 @@
-show-icons=true
-font="Hack Nerd Font 12"
-style-path=~/.config/wofi/style.css
-allow_images=true
-image_size=32

@@ -38,6 +38,8 @@ pavucontrol
 playerctl
 polkit-kde-agent
 python-pip
+qt5-virtualkeyboard
+qt6-virtualkeyboard
 qt6-wayland
 qutebrowser
 ripgrep

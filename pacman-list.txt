@@ -26,6 +26,7 @@ hyprpaper
 libva-nvidia-driver
 linux-headers
 lxsession
+ly
 make
 nano
 neovim
@@ -38,12 +39,9 @@ pavucontrol
 playerctl
 polkit-kde-agent
 python-pip
-qt5-virtualkeyboard
-qt6-virtualkeyboard
 qt6-wayland
 qutebrowser
 ripgrep
-sddm
 starship
 steam
 stow

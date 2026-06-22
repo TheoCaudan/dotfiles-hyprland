@@ -1,12 +1,9 @@
 ankama-launcher
-bloodhound
 departure
-dirb
 eww
 ffuf
 gobuster
 metasploit
-neo4j
 nikto
 responder
 spotube-bin

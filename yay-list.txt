@@ -1,11 +1,10 @@
 ankama-launcher
 departure
+dirb
 eww
 ffuf
-gobuster
-metasploit
-nikto
 responder
 spotube-bin
 subfinder-bin
-wpscan
+yay-bin
+yay-bin-debug

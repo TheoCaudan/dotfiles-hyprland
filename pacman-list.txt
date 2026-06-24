@@ -1,7 +1,11 @@
 alsa-utils
+apparmor
 base
 base-devel
 bc
+blueman
+bluez
+bluez-utils
 btop
 btrfs-progs
 cava
@@ -10,12 +14,14 @@ discord
 dmidecode
 dnsmasq
 docker
+docker-buildx
 docker-compose
 dunst
 easyeffects
 efibootmgr
 exploitdb
 eza
+fail2ban
 fd
 file-roller
 firefox
@@ -46,6 +52,7 @@ metasploit
 mpv
 nano
 neovim
+netexec
 network-manager-applet
 networkmanager
 nikto
@@ -61,7 +68,9 @@ os-prober
 pavucontrol
 pipewire-pulse
 polkit-kde-agent
+pwncat
 python-pip
+python-virtualenv
 qemu-desktop
 qemu-full
 qt5-virtualkeyboard
@@ -70,11 +79,13 @@ qt6-virtualkeyboard
 qt6-wayland
 qutebrowser
 ripgrep
+rustscan
 sddm
 slurp
 starship
 steam
 stow
+suricata
 tcpdump
 thunar
 thunar-archive-plugin
@@ -84,7 +95,9 @@ tree
 ttf-nerd-fonts-symbols
 tumbler
 udiskie
+ufw
 unzip
+uv
 virt-manager
 virt-viewer
 waybar
@@ -98,3 +111,4 @@ wpscan
 xcursor-comix
 xorg-xwayland
 yazi
+zip

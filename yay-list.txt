@@ -6,5 +6,7 @@ ffuf
 responder
 spotube-bin
 subfinder-bin
+suricata
+vscodium-bin
 yay-bin
 yay-bin-debug

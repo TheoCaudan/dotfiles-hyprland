@@ -80,8 +80,9 @@ qt6-wayland
 qutebrowser
 ripgrep
 rustscan
-sddm
 slurp
+snapper
+snap-pac
 starship
 steam
 stow

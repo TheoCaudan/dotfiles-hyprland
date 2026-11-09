@@ -49,7 +49,7 @@
   },
   "custom/cava": {
     "format": "{}",
-    "exec": "~/.config/waybar/scripts/cava.sh",
+    "exec": "bash -c \"$HOME/.config/waybar/scripts/cava.sh\"",
     "on-click": "eww open --toggle media-menu"
   },
   "clock": {

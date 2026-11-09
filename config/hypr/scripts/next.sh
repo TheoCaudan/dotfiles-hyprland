@@ -1,9 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 WS=$(hyprctl activeworkspace -j | jq ".id")
 
 if [ "$WS" -ge 5 ]; then
-    hyprctl dispatch workspace 1
+    NEXT=1
 else
-    hyprctl dispatch workspace $((WS + 1))
+    NEXT=$((WS + 1))
 fi
+
+hyprctl dispatch "hl.dsp.focus({ workspace = \"$NEXT\" })"

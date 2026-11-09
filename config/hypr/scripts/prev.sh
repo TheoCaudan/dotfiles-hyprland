@@ -3,7 +3,9 @@
 WS=$(hyprctl activeworkspace -j | jq ".id")
 
 if [ "$WS" -le 1 ]; then
-  hyprctl dispatch workspace 5
+  PREV=5
 else
-  hyprctl dispatch workspace $((WS - 1))
+  PREV=$((WS - 1))
 fi
+
+hyprctl dispatch "hl.dsp.focus({ workspace = \"$PREV\" })"

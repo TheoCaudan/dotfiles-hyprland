@@ -7,7 +7,7 @@ ART_URL=$(playerctl metadata mpris:artUrl 2>/dev/null)
 
 if [ -z "$ART_URL" ]; then
 
-  echo "/home/piqah/.config/waybar/scripts/default_cover.png"
+  echo "$HOME/.config/waybar/scripts/default_cover.png"
   exit 0
 fi
 

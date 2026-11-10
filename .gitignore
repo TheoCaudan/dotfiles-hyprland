@@ -5,3 +5,4 @@ Session Storage/
 *.bak
 *.env
 
+config/cava/shaders/orion_*.frag

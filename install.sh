@@ -53,4 +53,18 @@ if [ -f "$DOT_CONFIG_DIR/starship.toml" ]; then
   ln -s "$DOT_CONFIG_DIR/starship.toml" "$HOME/.config/starship.toml"
 fi
 
+if [ -f "$SCRIPT_DIR/bin/vpn-lab" ]; then
+  mkdir -p "$HOME/.local/bin"
+
+  if [ -e "$HOME/.local/bin/vpn-lab" ] && [ ! -L "$HOME/.local/bin/vpn-lab" ]; then
+    echo "[!] Saving vpn-lab in vpn-lab.bak"
+    mv "$HOME/.local/bin/vpn-lab" "$HOME/.local/bin/vpn-lab.bak"
+  elif [ -L "$HOME/.local/bin/vpn-lab" ]; then
+    rm "$HOME/.local/bin/vpn-lab"
+  fi
+
+  echo " -> Link vpn-lab..."
+  ln -s "$SCRIPT_DIR/bin/vpn-lab" "$HOME/.local/bin/vpn-lab"
+fi
+
 echo "Restore done."

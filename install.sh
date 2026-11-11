@@ -33,7 +33,7 @@ mkdir -p ~/.config
 
 DOT_CONFIG_DIR="$SCRIPT_DIR/config"
 
-for dir in hypr waybar wofi eww dunst foot kitty fish btop cava; do
+for dir in hypr waybar wofi eww dunst foot kitty fish btop cava mpv yazi Thunar; do
   if [ -d "$DOT_CONFIG_DIR/$dir" ]; then
     if [ -e "$HOME/.config/$dir" ]; then
       echo "[!] Saving $dir in $dir.bak"

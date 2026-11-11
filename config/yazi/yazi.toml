@@ -1,0 +1,5 @@
+[mgr]
+layout_bg = "#222222"
+
+[preview]
+image_filter = "lanczos3"

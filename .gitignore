@@ -6,3 +6,4 @@ Session Storage/
 *.env
 
 config/cava/shaders/orion_*.frag
+config/hypr/current_wallpaper*

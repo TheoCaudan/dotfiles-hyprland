@@ -84,7 +84,7 @@ link_config() {
 
 echo "[+] Déploiement des configurations..."
 
-for name in hypr waybar wofi eww dunst foot fish btop cava mpv yazi Thunar; do
+for name in hypr waybar wofi eww dunst foot fish pulsar cava mpv yazi Thunar; do
   if [[ -d "$SCRIPT_DIR/config/$name" ]]; then
     link_config "$SCRIPT_DIR/config/$name" "$HOME/.config/$name"
   fi

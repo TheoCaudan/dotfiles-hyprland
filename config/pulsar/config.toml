@@ -1,0 +1,7 @@
+refresh_ms = 1000
+theme = "tokyo-night"
+smoothing = 75
+history_len = 120
+hide_kernel_threads = false
+confirm_kill = true
+nerd_icons = false

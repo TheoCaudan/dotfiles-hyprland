@@ -10,7 +10,7 @@ hl.bind("ALT + F4", hl.dsp.window.close())
 hl.bind("SUPER + L", hl.dsp.exec_cmd("hyprlock"))
 
 -- Task manager
-hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("footclient btop"))
+hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("footclient pulsar"))
 
 -- File manager
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("Thunar"))

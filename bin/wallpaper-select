@@ -3,7 +3,7 @@
 export PATH="$PATH:/usr/sbin:/usr/bin"
 
 WALLPAPER_DIR="$HOME/Data/Pictures/wallpapers"
-SYMLINK_PATH="$HOME/.config/hypr/current_wallpaper.mp4"
+SYMLINK_PATH="$HOME/.config/hypr/current_wallpaper"
 DOTFILES_WOFI_DIR="$HOME/Projects/dotfiles/config/wofi"
 WALLPAPER_STYLE_FILE="$DOTFILES_WOFI_DIR/wallpaper-style.css"
 CACHE_DIR="$HOME/.cache/wallpapers"

@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+power_state=$(bluetoothctl show | grep "Powered:" | awk '{print $2}')
+
+if [ "$power_state" = "yes" ]; then
+    toggle="Disable Bluetooth"
+    devices=$(bluetoothctl devices | cut -d ' ' -f 2-)
+    options="$toggle\n$devices"
+else
+    options="Enable Bluetooth"
+fi
+
+chosen=$(echo -e "$options" | wofi --dmenu --prompt "Bluetooth" --width 500 --height 250)
+
+[ -z "$chosen" ] && exit 0
+
+if [ "$chosen" = "Enable Bluetooth" ]; then
+    rfkill unblock bluetooth
+    bluetoothctl power on
+elif [ "$chosen" = "Disable Bluetooth" ]; then
+    bluetoothctl power off
+else
+    mac=$(echo "$chosen" | awk '{print $1}')
+    connected=$(bluetoothctl info "$mac" | grep "Connected:" | awk '{print $2}')
+    if [ "$connected" = "yes" ]; then
+        bluetoothctl disconnect "$mac"
+    else
+        bluetoothctl connect "$mac"
+    fi
+fi

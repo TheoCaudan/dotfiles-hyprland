@@ -56,6 +56,8 @@ window {
     margin: 5px;
     border-radius: 0;
     -gtk-icon-effect: none;
+    flex-direction: column;
+    align-items: center;
 }
 
 #entry:selected {
@@ -73,7 +75,7 @@ window {
 }
 
 #entry img {
-    -gtk-icon-size: 240px;
+    -gtk-icon-size: 450px;
     margin-bottom: 8px;
 }
 
@@ -81,6 +83,7 @@ window {
     color: @color_fg;
     font-weight: bold;
     margin-top: 5px;
+    margin-left: 0px;
     text-align: center;
 }
 CSS
@@ -113,7 +116,7 @@ if [ -z "$menu_list" ]; then
     exit 1
 fi
 
-SELECTED=$(printf "%b" "$menu_list" | wofi --dmenu --allow-images --columns 2 --style "$WALLPAPER_STYLE_FILE" --prompt "Wallpaper:" | tr -d '\r\n')
+SELECTED=$(printf "%b" "$menu_list" | wofi --dmenu --allow-images --columns 2 --define image_size=450 --style "$WALLPAPER_STYLE_FILE" --prompt "Wallpaper:" | tr -d '\r\n')
 
 if [ -n "$SELECTED" ]; then
     SELECTED_PATH="${wallpapers[$SELECTED]}"

@@ -37,6 +37,8 @@ window {
     margin: 5px;
     border-radius: 0;
     -gtk-icon-effect: none;
+    flex-direction: column;
+    align-items: center;
 }
 
 #entry:selected {
@@ -54,7 +56,7 @@ window {
 }
 
 #entry img {
-    -gtk-icon-size: 240px;
+    -gtk-icon-size: 450px;
     margin-bottom: 8px;
 }
 
@@ -62,5 +64,6 @@ window {
     color: @color_fg;
     font-weight: bold;
     margin-top: 5px;
+    margin-left: 0px;
     text-align: center;
 }

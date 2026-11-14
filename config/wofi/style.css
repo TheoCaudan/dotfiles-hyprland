@@ -1,8 +1,8 @@
 @define-color color_bg rgba(4, 4, 4, 0.95);
 @define-color color_input_bg rgba(45, 45, 45, 1);
-@define-color color_fg #d7d9ce; /* Texte Dust Grey */
-@define-color color_accent #119da4; /* Dark Cyan */
-@define-color color_highlight_fg #040404; /* Noir pour le contraste */
+@define-color color_fg #d7d9ceff;
+@define-color color_accent #119da4ff;
+@define-color color_highlight_fg #040404;
 
 window {
     background-color: transparent;

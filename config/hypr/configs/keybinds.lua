@@ -32,6 +32,7 @@ hl.bind(mainMod .. " + S", hl.dsp.exec_cmd("wofi-wifi"))
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd("departure"))
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("sxiv -t -b $HOME/Data/Pictures"))
 hl.bind(mainMod .. " + H", hl.dsp.exec_cmd("cliphist list | wofi --dmenu | cliphist decode | wl-copy"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("wallpaper-select"))
 
 -- Music controls (mocp)
 hl.bind(mainMod .. " + Left", hl.dsp.exec_cmd("mocp -M .config/moc -r"))

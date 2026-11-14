@@ -1,4 +1,6 @@
-#! /bin/bash
+#!/usr/bin/env bash
+
+pkill -9 -x cava 2>/dev/null || true
 
 bar="▁▂▃▄▅▆▇█"
 dict="s/;//g;"
@@ -10,7 +12,7 @@ while [ $i -lt ${#bar} ]; do
 done
 
 config_file="/tmp/waybar_cava_config"
-echo "
+cat << 'EOF' > "$config_file"
 [general]
 bars = 10
 
@@ -19,7 +21,9 @@ method = raw
 raw_target = /dev/stdout
 data_format = ascii
 ascii_max_range = 7
-" >$config_file
+EOF
+
+trap "pkill -9 -x cava 2>/dev/null; rm -f $config_file; exit 0" EXIT INT TERM
 
 cava -p $config_file | while read -r line; do
   echo $line | sed $dict

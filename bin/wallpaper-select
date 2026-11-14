@@ -1,0 +1,137 @@
+#!/usr/bin/env bash
+
+export PATH="$PATH:/usr/sbin:/usr/bin"
+
+WALLPAPER_DIR="$HOME/Data/Pictures/wallpapers"
+SYMLINK_PATH="$HOME/.config/hypr/current_wallpaper.mp4"
+DOTFILES_WOFI_DIR="$HOME/Projects/dotfiles/config/wofi"
+WALLPAPER_STYLE_FILE="$DOTFILES_WOFI_DIR/wallpaper-style.css"
+CACHE_DIR="$HOME/.cache/wallpapers"
+
+if [ ! -d "$WALLPAPER_DIR" ]; then
+    mkdir -p "$WALLPAPER_DIR"
+    dunstify -u low "Wallpaper" "Directory created: $WALLPAPER_DIR"
+    exit 1
+fi
+
+mkdir -p "$CACHE_DIR" "$DOTFILES_WOFI_DIR"
+
+cat << 'CSS' > "$WALLPAPER_STYLE_FILE"
+@define-color color_bg rgba(4, 4, 4, 0.95);
+@define-color color_input_bg rgba(45, 45, 45, 1);
+@define-color color_fg #d7d9ceff;
+@define-color color_accent #119da4ff;
+@define-color color_highlight_fg #040404;
+
+window {
+    background-color: transparent;
+}
+
+#outer-box {
+    background-color: @color_bg;
+    border-radius: 0;
+    padding: 0px;
+    border: 2px solid @color_accent;
+}
+
+#input {
+    background-color: @color_input_bg;
+    color: @color_fg;
+    border: none;
+    padding: 10px;
+    margin: 0;
+    font-size: 16px;
+    font-family: "JetBrains Mono Nerd Font", sans-serif;
+    border-radius: 0;
+}
+
+#inner-box {
+    padding: 0;
+    margin: 0;
+}
+
+#entry {
+    color: @color_fg;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 0;
+    -gtk-icon-effect: none;
+}
+
+#entry:selected {
+    background-color: @color_accent;
+    color: @color_highlight_fg;
+    border-radius: 0;
+    font-weight: bold;
+}
+
+#entry:hover {
+    background-color: @color_accent;
+    color: @color_highlight_fg;
+    border-radius: 0;
+    font-weight: bold;
+}
+
+#entry img {
+    -gtk-icon-size: 240px;
+    margin-bottom: 8px;
+}
+
+#text {
+    color: @color_fg;
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: center;
+}
+CSS
+
+declare -A wallpapers
+menu_list=""
+
+while IFS= read -r file; do
+    [ -z "$file" ] && continue
+    
+    ext="${file##*.}"
+    ext=$(echo "$ext" | tr '[:upper:]' '[:lower:]')
+    
+    thumb="$file"
+    if [[ "$ext" =~ ^(mp4|mkv|webm)$ ]]; then
+        hash=$(sha256sum <<< "$file" | cut -d' ' -f1)
+        thumb="$CACHE_DIR/$hash.png"
+        if [ ! -f "$thumb" ]; then
+            ffmpeg -ss 00:00:01 -i "$file" -vframes 1 -vf "scale=500:-1" "$thumb" -y &>/dev/null || thumb="$file"
+        fi
+    fi
+
+    entry="img:$thumb"
+    wallpapers["$entry"]="$file"
+    menu_list+="$entry\n"
+done < <(find "$WALLPAPER_DIR" -type f \( -name "*.mp4" -o -name "*.mkv" -o -name "*.webm" -o -name "*.gif" -o -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" \))
+
+if [ -z "$menu_list" ]; then
+    dunstify -u low "Wallpaper" "No wallpapers found in $WALLPAPER_DIR"
+    exit 1
+fi
+
+SELECTED=$(printf "%b" "$menu_list" | wofi --dmenu --allow-images --columns 2 --style "$WALLPAPER_STYLE_FILE" --prompt "Wallpaper:" | tr -d '\r\n')
+
+if [ -n "$SELECTED" ]; then
+    SELECTED_PATH="${wallpapers[$SELECTED]}"
+
+    if [ -n "$SELECTED_PATH" ] && [ -f "$SELECTED_PATH" ]; then
+        ln -sf "$SELECTED_PATH" "$SYMLINK_PATH"
+
+        pkill -x mpvpaper 2>/dev/null || true
+        pkill -x mpvpaper-holder 2>/dev/null || true
+        pkill -x hyprpaper 2>/dev/null || true
+        sleep 0.1
+        rm -f /tmp/mpv-socket* 2>/dev/null
+
+        nohup mpvpaper -o "no-audio" -o "loop" "*" "$SYMLINK_PATH" > /tmp/mpvpaper.log 2>&1 &
+        dunstify -u low "Wallpaper" "Applied: $(basename "$SELECTED_PATH")"
+    else
+        dunstify -u critical "Wallpaper Error" "Path not found for selection"
+    fi
+else
+    dunstify -u low "Wallpaper" "Selection cancelled"
+fi

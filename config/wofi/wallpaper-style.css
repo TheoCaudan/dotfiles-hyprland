@@ -1,0 +1,66 @@
+@define-color color_bg rgba(4, 4, 4, 0.95);
+@define-color color_input_bg rgba(45, 45, 45, 1);
+@define-color color_fg #d7d9ceff;
+@define-color color_accent #119da4ff;
+@define-color color_highlight_fg #040404;
+
+window {
+    background-color: transparent;
+}
+
+#outer-box {
+    background-color: @color_bg;
+    border-radius: 0;
+    padding: 0px;
+    border: 2px solid @color_accent;
+}
+
+#input {
+    background-color: @color_input_bg;
+    color: @color_fg;
+    border: none;
+    padding: 10px;
+    margin: 0;
+    font-size: 16px;
+    font-family: "JetBrains Mono Nerd Font", sans-serif;
+    border-radius: 0;
+}
+
+#inner-box {
+    padding: 0;
+    margin: 0;
+}
+
+#entry {
+    color: @color_fg;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 0;
+    -gtk-icon-effect: none;
+}
+
+#entry:selected {
+    background-color: @color_accent;
+    color: @color_highlight_fg;
+    border-radius: 0;
+    font-weight: bold;
+}
+
+#entry:hover {
+    background-color: @color_accent;
+    color: @color_highlight_fg;
+    border-radius: 0;
+    font-weight: bold;
+}
+
+#entry img {
+    -gtk-icon-size: 240px;
+    margin-bottom: 8px;
+}
+
+#text {
+    color: @color_fg;
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: center;
+}
